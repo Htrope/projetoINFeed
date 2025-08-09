@@ -1,19 +1,17 @@
-import { useState } from 'react'
+import './App.css';
 
-import './App.css'
-import BtnLikes from './componentes/BtnLikes'
-import Header from './componentes/Header'
+import Header from './componentes/Header';
+import Perfil from './componentes/Perfil';
+  
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <Header/>
-      <BtnLikes/>
+      <Header />
+      
+      <Perfil/>
     </>
-    
-      )
+  );
 }
 
-export default App
+export default App;
