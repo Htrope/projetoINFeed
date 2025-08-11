@@ -20,9 +20,6 @@ body{
   padding: 24px;
 }
 
-.sidebar {
-  flex: 0 0 356px;
-}
 
 .feed {
   flex: 1;
@@ -31,11 +28,3 @@ body{
   gap: 24px;
 }
 
-.container {
-  width: min(1200px, 95vw);
-  margin-inline: auto;
-}
-
-.feed{
-  padding-left: 250px;
-}

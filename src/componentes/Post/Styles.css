@@ -1,12 +1,14 @@
 .Post {
-    width: 921px;
-    height: 656px;
-    display: flex;
-    flex-direction: column;
-    background: #0E0E1B;
-    border-radius: 2% ;
-    padding: 24px;
-    color: #CCCCCC;
+  width: 100%;
+  max-width: 921px;
+
+  display: flex;
+  flex-direction: column;
+  background: #0e0e1b;
+  border-radius: 2%;
+  padding: 24px;
+  color: #cccccc;
+  box-sizing: border-box;
 }
 
 .PostHeader {
@@ -22,14 +24,14 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  }
+}
 
 .PostAvatar {
   width: 44px;
   height: 44px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--accent);
+  border: 2px solid var(--accent, #3b82f6);
 }
 
 .PostName {
@@ -39,25 +41,25 @@
 }
 
 .PostRole {
-  color: var(--muted);
+  color: var(--muted, #9aa4b2);
   font-size: 1.12rem;
 }
 
 .PostTime {
-  color: white;
-  font-size: .9rem;
+  color: #fff;
+  font-size: 0.9rem;
   white-space: nowrap;
 }
 
 .PostContent {
-  flex: 1;
   display: grid;
   gap: 10px;
   margin: 14px 0 22px;
-  font-family: Inter;
+
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
   font-weight: 400;
-  line-height: 100%;
-  letter-spacing: 0%;
+  line-height: 1.35;
 }
 
 .PostFeedback {
@@ -71,31 +73,120 @@
 }
 
 .PostTextarea {
-  width: 95%;
+  width: 100%;
   min-height: 140px;
   resize: vertical;
   padding: 14px;
   border-radius: 10px;
-  border: 1.5px solid var(--outline);
-  background: white;
-  color: black;
+  border: 1.5px solid var(--outline, #1f2a44);
+  background: #fff;
+  color: #000;
   outline: none;
   font: inherit;
 }
 
+.PostTextarea:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+  border-color: var(--accent, #3b82f6);
+}
+
 .PostButton {
-    border: none;
-    border-radius: 10px;
-    background: #036fdb;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform .15s ease, filter .15s ease;
-    width: 139px;
-    height: 47px;
-    border-radius: 8px;
+  border: none;
+  border-radius: 10px;
+  background: #036fdb;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  width: 139px;
+  height: 47px;
+}
 
+.PostButton:hover {
+  filter: brightness(1.05);
+}
+.PostButton:active {
+  transform: translateY(1px);
+}
+
+.Comments {
+  margin-top: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.Comment {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--outline, #1f2a44);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.CommentHead,
+.ReplyHead {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.CommentAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.CommentMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.CommentAuthor {
+  color: #e8eefc;
+  font-weight: 700;
+}
+
+.CommentText {
+  margin: 10px 0 6px;
+  color: #ccd6ec;
+  line-height: 1.45;
+}
+
+/* === RESPOSTAS === */
+.ReplyList {
+  margin-top: 10px;
+  display: grid;
+  gap: 10px;
+}
+
+.ReplyItem {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 38px;
+}
+
+.ReplyBox {
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+}
+
+@media (max-width: 980px) {
+  .Post {
+    border-radius: 16px;
+    padding: 20px;
   }
-
-.PostButton:hover { filter: brightness(1.05); }
-.PostButton:active { transform: translateY(1px); }
+  .PostName {
+    font-size: 1.4rem;
+  }
+  .PostRole {
+    font-size: 1rem;
+  }
+  .PostTime {
+    font-size: 0.85rem;
+  }
+}
