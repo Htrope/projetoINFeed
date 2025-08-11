@@ -1,7 +1,7 @@
 import "./Styles.css"; 
 import { useState } from "react";
 import Comment from "./Comment";
-import type { CommentData, CurrentUser } from "./Types";
+import type { CommentData, CurrentUser, PostData } from "./Types";
 
 type Props = {
   currentUser: {
@@ -10,30 +10,17 @@ type Props = {
     avatarUrl: string;
     coverUrl: string;
   };
+  post: PostData;
 };
 
-export default function Post({ currentUser }: Props) {
+export default function Post({ currentUser, post }: Props) {
   const me: CurrentUser = {
     name: currentUser.name,
     avatar: currentUser.avatarUrl,
   };
 
   const [input, setInput] = useState<string>("");
-
-  const [comments, setComments] = useState<CommentData[]>([
-    {
-      id: 1,
-      author: "Felypepe Nunes",
-      avatar: "https://i.pravatar.cc/64?img=1",
-      text: "Est aspernatur quis eos natus dicta et internos",
-    },
-    {
-      id: 2,
-      author: "Mellany Carter",
-      avatar: "https://i.pravatar.cc/64?img=5",
-      text: "Outro comentário de exemplo",
-    },
-  ]);
+  const [comments, setComments] = useState<CommentData[]>(post.comments);
 
   const addComment = () => {
     const text = input.trim();
@@ -54,34 +41,29 @@ export default function Post({ currentUser }: Props) {
         <div className="PostUser">
           <img
             className="PostAvatar"
-            src="https://i.pinimg.com/736x/8f/09/ed/8f09edc50a7070a9d3a04ab67e5bc15d.jpg"
-            alt="Foto de perfil do Cirilo"
+            src={post.avatar}
+            alt={`Foto de perfil de ${post.author}`}
           />
           <div className="PostUserInfo">
-            <h2 className="PostName">Cirilo Riveira</h2>
-            <span className="PostRole">Dev Back-end</span>
+            <h2 className="PostName">{post.author}</h2>
+            <span className="PostRole">{post.role}</span>
           </div>
         </div>
-        <time className="PostTime" dateTime="2025-08-10T19:00:00">
-          Publicado há 1h
-        </time>
+        <time className="PostTime">{post.time}</time>
       </header>
 
       <section className="PostContent">
-        <p>Lorem ipsum</p>
-        <p>
-          dolor sit amet. Ex laboriosam dolorem non tempore earum et voluptatem
-          suscipit ut cupiditate nisi est odit voluptates…
-        </p>
-        <p>Non quos omnis ut autem labore nam vero…</p>
+        {post.content.map((p, index) => (
+          <p key={index}>{p}</p>
+        ))}
       </section>
 
       <section className="PostFeedback">
-        <label htmlFor="feedback" className="PostLabel">
+        <label htmlFor={`feedback-${post.id}`} className="PostLabel">
           Deixe seu feedback
         </label>
         <textarea
-          id="feedback"
+          id={`feedback-${post.id}`}
           className="PostTextarea"
           placeholder={`Comentar como ${me.name}…`}
           value={input}
