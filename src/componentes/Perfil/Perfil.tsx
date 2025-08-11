@@ -22,7 +22,7 @@ export default function Perfil() {
 
       
       <div className="info">
-        <h3 className="name">Henrique</h3>
+        <h3 className="name">Henrique Trope</h3>
         <p className="role">Dev Front-end</p>
       </div>
     </article>
