@@ -1,4 +1,4 @@
-import "./Styles.css";
+import "./Styles.css"; 
 import { useState } from "react";
 import Comment from "./Comment";
 import type { CommentData, CurrentUser } from "./Types";
@@ -26,14 +26,12 @@ export default function Post({ currentUser }: Props) {
       author: "Felypepe Nunes",
       avatar: "https://i.pravatar.cc/64?img=1",
       text: "Est aspernatur quis eos natus dicta et internos",
-      replies: [],
     },
     {
       id: 2,
       author: "Mellany Carter",
       avatar: "https://i.pravatar.cc/64?img=5",
       text: "Outro comentário de exemplo",
-      replies: [],
     },
   ]);
 
@@ -45,26 +43,9 @@ export default function Post({ currentUser }: Props) {
       author: me.name,
       avatar: me.avatar,
       text,
-      replies: [],
     };
     setComments((prev) => [newComment, ...prev]);
     setInput("");
-  };
-
-  const addReply = (parentId: number, text: string) => {
-    setComments((prev) =>
-      prev.map((c) =>
-        c.id === parentId
-          ? {
-              ...c,
-              replies: [
-                ...c.replies,
-                { id: Date.now(), author: me.name, avatar: me.avatar, text },
-              ],
-            }
-          : c
-      )
-    );
   };
 
   return (
@@ -73,11 +54,11 @@ export default function Post({ currentUser }: Props) {
         <div className="PostUser">
           <img
             className="PostAvatar"
-            src="https://i.pravatar.cc/64?img=32"
-            alt="Foto de perfil de Ricardo Siqueira"
+            src="https://i.pinimg.com/736x/8f/09/ed/8f09edc50a7070a9d3a04ab67e5bc15d.jpg"
+            alt="Foto de perfil do Cirilo"
           />
           <div className="PostUserInfo">
-            <h2 className="PostName">Ricardo Siqueira</h2>
+            <h2 className="PostName">Cirilo Riveira</h2>
             <span className="PostRole">Dev Back-end</span>
           </div>
         </div>
@@ -111,9 +92,9 @@ export default function Post({ currentUser }: Props) {
         </button>
       </section>
 
-    <div className="Comments">
+      <div className="Comments">
         {comments.map((c) => (
-          <Comment key={c.id} data={c} currentUser={me} onReply={addReply} />
+          <Comment key={c.id} data={c} />
         ))}
       </div>
     </article>
