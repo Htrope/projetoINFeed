@@ -171,3 +171,24 @@
   width: 20px;
   height: 20px;
 }
+
+.CommentActions {
+  margin-top: 8px;
+}
+
+.LikeBtn {
+  background: transparent;
+  border: none;
+  color: #3b82f6;
+  font-weight: 500;
+  cursor: pointer;
+  }
+
+.LikeBtn:hover {
+  text-decoration: none;
+}
+
+.imgLike{
+  padding-right: 8px;
+  transform:translateY(4px)
+}

@@ -1,5 +1,7 @@
 import lixo from '../../assets/t.png';
 import type { CommentData } from './Types';
+import { useState } from 'react';
+import like from '../../assets/Like.png'
 
 type Props = {
   data: CommentData;
@@ -7,6 +9,8 @@ type Props = {
 };
 
 export default function Comment({ data, onDelete }: Props) {
+  const [likes, setLikes] = useState(0);
+
   return (
     <div className="Comment">
       <div className="CommentHead">
@@ -20,11 +24,20 @@ export default function Comment({ data, onDelete }: Props) {
           onClick={() => onDelete(data.id)}
           aria-label={`Excluir comentário de ${data.author}`}
         >
-          <img src={lixo} alt="" />
+          <img src={lixo} alt="Excluir" />
         </button>
       </div>
 
       <p className="CommentText">{data.text}</p>
+
+      <div className="CommentActions">
+        <button
+          className="LikeBtn"
+          onClick={() => setLikes((prev) => prev + 1)}
+        >
+           <img src={like} alt="Simbolo de like" className='imgLike'/> Like •      {likes}
+        </button>
+      </div>
     </div>
   );
 }
