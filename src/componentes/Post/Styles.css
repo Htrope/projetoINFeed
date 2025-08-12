@@ -154,4 +154,20 @@
   line-height: 1.45;
 }
 
+.CommentHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.DeleteBtn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.DeleteBtn img {
+  width: 20px;
+  height: 20px;
+}

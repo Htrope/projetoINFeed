@@ -1,4 +1,4 @@
-import "./Styles.css"; 
+import "./Styles.css";
 import { useState } from "react";
 import Comment from "./Comment";
 import type { CommentData, CurrentUser, PostData } from "./Types";
@@ -25,14 +25,20 @@ export default function Post({ currentUser, post }: Props) {
   const addComment = () => {
     const text = input.trim();
     if (!text) return;
+
     const newComment: CommentData = {
       id: Date.now(),
       author: me.name,
       avatar: me.avatar,
       text,
     };
+
     setComments((prev) => [newComment, ...prev]);
     setInput("");
+  };
+
+  const deleteComment = (id: number) => {
+    setComments((prev) => prev.filter((c) => c.id !== id));
   };
 
   return (
@@ -76,7 +82,7 @@ export default function Post({ currentUser, post }: Props) {
 
       <div className="Comments">
         {comments.map((c) => (
-          <Comment key={c.id} data={c} />
+          <Comment key={c.id} data={c} onDelete={deleteComment} />
         ))}
       </div>
     </article>
